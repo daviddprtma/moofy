@@ -19,18 +19,22 @@ class Footer extends StatelessWidget {
             height: 8,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  "https://www.instagram.com/daviddprtma/";
+                },
                 icon: Icon(
-                  Icons.link,
+                  Icons.image,
                   color: Colors.grey[400],
                 ),
                 tooltip: "Instagram",
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  "https://www.threads.net/@daviddprtma?xmt=AQGzSnLf8sMsuZKFwwQ7cpEiB5F6YERP85PmrGB1jCISV7Y";
+                },
                 icon: Icon(
                   Icons.link,
                   color: Colors.grey[400],
@@ -38,21 +42,51 @@ class Footer extends StatelessWidget {
                 tooltip: "Threads",
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  "https://www.youtube.com/@daviddprtma";
+                },
                 icon: Icon(
-                  Icons.link,
+                  Icons.video_collection,
                   color: Colors.grey[400],
                 ),
                 tooltip: "Youtube",
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  "https://www.tiktok.com/@daviddprtma2812";
+                },
                 icon: Icon(
-                  Icons.link,
+                  Icons.tiktok,
                   color: Colors.grey[400],
                 ),
                 tooltip: "Tiktok",
               ),
+            ],
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Wrap(
+            spacing: 16,
+            children: [
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "About Us",
+                    style: TextStyle(color: Colors.grey[400]),
+                  )),
+                  TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Privacy Policy",
+                    style: TextStyle(color: Colors.grey[400]),
+                  )),
+                  TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Terms of Service",
+                    style: TextStyle(color: Colors.grey[400]),
+                  ))
             ],
           )
         ],
