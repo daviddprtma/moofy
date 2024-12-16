@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moofy/widgets/footer.dart';
+import 'package:moofy/models/movie.dart';
+import 'package:moofy/services/model_service.dart';
+import 'package:moofy/widgets/home_widgets/custom_carousel_slider.dart';
 import 'package:moofy/widgets/skeletons/carousel_skeleton.dart';
 import 'package:moofy/widgets/drawer.dart';
 import 'package:moofy/widgets/navbar.dart';
@@ -14,6 +17,22 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomePageState extends State<Homepage> {
+  List<Movie> _topRatedMovies = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    getdata();
+  }
+
+  getdata() async {
+    _topRatedMovies = await ModelService().fetchtopRatedMovie();
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,14 +52,17 @@ class _HomePageState extends State<Homepage> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
-              const Row(
+               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Flexible(
                       flex: 2,
                       child: Padding(
                           padding: EdgeInsets.only(left: 16),
-                          child: CarouselSkeleton())),
+                          child: 
+                          _isLoading 
+                          ? const CarouselSkeleton() : 
+                          CustomCarouselSlider(topRatedMovies: _topRatedMovies))),
                   SizedBox(
                     width: 20,
                   ),
@@ -85,7 +107,7 @@ class _HomePageState extends State<Homepage> {
                       height: gridHeight, child: const PopularMovieSkeleton());
                 }),
               ),
-               SizedBox(
+              SizedBox(
                 height: 8,
               ),
               Footer()
