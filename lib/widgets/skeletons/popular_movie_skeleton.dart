@@ -10,7 +10,7 @@ class PopularMovieSkeleton extends StatelessWidget {
       enabled: true,
       child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, childAspectRatio: 0.8),
+              crossAxisCount: 5, childAspectRatio: 0.8),
           itemCount: 12,
           itemBuilder: (context, index) {
             return Card(
