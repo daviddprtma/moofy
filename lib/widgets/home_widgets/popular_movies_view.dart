@@ -22,10 +22,14 @@ class _PopularMoviesViewState extends State<PopularMoviesView> {
           final movie = widget.popularMovies[index];
           return MouseRegion(
             onEnter: (_) {
-              setState(() {});
+              setState(() {
+                _hoverIndex = index;
+              });
             },
             onExit: (_) {
-              setState(() {});
+              setState(() {
+                _hoverIndex = null;
+              });
             },
             child: AnimatedContainer(
               duration: Duration(

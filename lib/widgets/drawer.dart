@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -10,7 +11,9 @@ class CustomDrawer extends StatelessWidget {
             height: 15,
           ),
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.go('/');
+              },
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
@@ -23,7 +26,9 @@ class CustomDrawer extends StatelessWidget {
             height: 15,
           ),
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                context.go('/movies');
+              },
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
