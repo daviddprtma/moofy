@@ -65,4 +65,45 @@ class ModelService {
       throw Exception('Failed to load movie');
     }
   }
+
+  Future<List<Movie>> searchMovie(String query) async {
+    final response = await http.get(
+        Uri.parse('https://api.themoviedb.org/3/search/movie?query=${query}'),
+        headers: headers);
+
+    if (response.statusCode == 200) {
+      return (json.decode(response.body)['results'] as List)
+          .map((data) => Movie.fromJson(data))
+          .toList();
+    } else {
+      throw Exception('Failed to load movie');
+    }
+  }
+
+  Future<Movie> fetchMovieById(String id) async {
+    final response = await http.get(
+        Uri.parse('${BASE_URL}${id}?language=id-ID&page=1'),
+        headers: headers);
+
+    if (response.statusCode == 200) {
+      
+      return Movie.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load movie');
+    }
+  }
+
+  Future<List<Movie>> fetchSimilarMovie(String id) async {
+    final response = await http.get(
+        Uri.parse('${BASE_URL}$id/similar?language=id-ID&page=1'),
+        headers: headers);
+
+    if (response.statusCode == 200) {
+      return (json.decode(response.body)['results'] as List)
+          .map((data) => Movie.fromJson(data))
+          .toList();
+    } else {
+      throw Exception('Failed to load movie');
+    }
+  }
 }

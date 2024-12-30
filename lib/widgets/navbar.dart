@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomNavbar extends StatelessWidget implements PreferredSizeWidget {
   const CustomNavbar({super.key});
@@ -33,6 +34,9 @@ class CustomNavbar extends StatelessWidget implements PreferredSizeWidget {
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                     fontSize: 20),
+                onSubmitted: (value) {
+                  context.go('/search/$value');
+                },
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.clear),
                     suffixIcon: IconButton(
@@ -40,8 +44,7 @@ class CustomNavbar extends StatelessWidget implements PreferredSizeWidget {
                       icon: Icon(Icons.cancel),
                     ),
                     hintText: "Search...",
-                    border: InputBorder.none
-                    ),
+                    border: InputBorder.none),
               ),
             ),
           )

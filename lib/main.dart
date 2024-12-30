@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:moofy/home.dart';
-import 'package:moofy/movies.dart';
+import 'package:moofy/pages/home.dart';
+import 'package:moofy/pages/movie_details.dart';
+import 'package:moofy/pages/movies.dart';
+import 'package:moofy/pages/search.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +18,20 @@ class MyApp extends StatelessWidget {
     GoRoute(
       path: '/movies',
       builder: (context, state) => const MoviesPage(),
+    ),
+    GoRoute(
+      path: '/search/:query',
+      builder: (context, state) {
+        final query = state.pathParameters['query']!;
+        return SearchPage(query: query);
+      },
+    ),
+    GoRoute(
+      path: '/movie/:movieId',
+      builder: (context, state) {
+        final movieId = state.pathParameters['movieId']!;
+        return MovieDetailsPage(movieId: movieId);
+      },
     )
   ]);
 
