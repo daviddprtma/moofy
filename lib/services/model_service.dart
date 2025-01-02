@@ -92,6 +92,7 @@ class ModelService {
       throw Exception('Failed to load movie');
     }
   }
+  
 
   Future<List<Movie>> fetchSimilarMovie(String id) async {
     final response = await http.get(

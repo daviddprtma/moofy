@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:moofy/models/movie.dart';
 import 'package:moofy/services/model_service.dart';
 import 'package:moofy/widgets/footer.dart';
@@ -54,7 +55,9 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                           elevation: 6,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              context.go('/movie/${movie.id}');
+                            },
                             child: Padding(
                               padding: EdgeInsets.all(12),
                               child: Row(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moofy/responsive.dart';
 import 'package:moofy/widgets/footer.dart';
 import 'package:moofy/models/movie.dart';
 import 'package:moofy/services/model_service.dart';
@@ -59,50 +60,94 @@ class _HomePageState extends State<Homepage> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                      flex: 2,
-                      child: Padding(
-                          padding: EdgeInsets.only(left: 16),
-                          child: _isLoading
-                              ? const CarouselSkeleton()
-                              : CustomCarouselSlider(
-                                  topRatedMovies: _topRatedMovies))),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Flexible(
-                    flex: 1,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 8),
-                            child: Text(
-                              "Now Playing",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            width: 350,
-                            height: 470,
+              Responsive().isDesktop(context)
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                            flex: 2,
+                            child: Padding(
+                                padding: EdgeInsets.only(left: 16),
+                                child: _isLoading
+                                    ? const CarouselSkeleton()
+                                    : CustomCarouselSlider(
+                                        topRatedMovies: _topRatedMovies))),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Flexible(
+                          flex: 1,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 8),
+                                  child: Text(
+                                    "Now Playing",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                SizedBox(
+                                  width: 350,
+                                  height: 470,
+                                  child: _isLoading
+                                      ? NowPlayingSkeleton()
+                                      : NowPlayingList(
+                                          nowPlayingMovie: _nowPlayingMovies),
+                                ),
+                              ]),
+                        )
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16),
                             child: _isLoading
-                                ? NowPlayingSkeleton()
-                                : NowPlayingList(
-                                    nowPlayingMovie: _nowPlayingMovies),
+                                ? const CarouselSkeleton()
+                                : CustomCarouselSlider(
+                                    topRatedMovies: _topRatedMovies)),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 8),
+                                child: Text(
+                                  "Now Playing",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              SizedBox(
+                                width: 350,
+                                height: 470,
+                                child: _isLoading
+                                    ? NowPlayingSkeleton()
+                                    : NowPlayingList(
+                                        nowPlayingMovie: _nowPlayingMovies),
+                              ),
+                            ],
                           ),
-                        ]),
-                  )
-                ],
-              ),
+                        )
+                      ],
+                    ),
               const SizedBox(
                 height: 15,
               ),
@@ -114,22 +159,12 @@ class _HomePageState extends State<Homepage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: _isLoading
-                    ? LayoutBuilder(builder: (context, contraints) {
-                        double gridHeight = (contraints.maxWidth / 5) * 1.25 * 3;
-                        return SizedBox(
-                            height: gridHeight,
-                            child: const PopularMovieSkeleton());
-                      })
-                    : LayoutBuilder(builder: (context, contraints) {
-                        double gridHeight = (contraints.maxWidth / 5) * 1.25 * (_popularMovies.length / 5);
-                        return SizedBox(
-                            height: gridHeight,
-                            child: PopularMoviesView(
-                                popularMovies: _popularMovies));
-                      }),
-              ),
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: LayoutBuilder(builder: (context, contraints) {
+                    return _isLoading
+                        ? const PopularMovieSkeleton()
+                        : PopularMoviesView(popularMovies: _popularMovies);
+                  })),
               SizedBox(
                 height: 8,
               ),

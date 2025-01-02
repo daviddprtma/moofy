@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:moofy/models/movie.dart';
 
 class NowPlayingList extends StatelessWidget {
@@ -15,7 +16,9 @@ class NowPlayingList extends StatelessWidget {
         itemBuilder: (context, index) {
           final movie = nowPlayingMovie[index];
           return ListTile(
-            onTap: () {},
+            onTap: () {
+              context.go('/movie/${movie.id}');
+            },
             leading: Image.network(
               "https://image.tmdb.org/t/p/w200/${movie.posterPath}",
               width: 80,

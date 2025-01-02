@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:moofy/models/movie.dart';
+import 'package:moofy/responsive.dart';
 
 class PopularMoviesView extends StatefulWidget {
   final List<Movie> popularMovies;
@@ -15,8 +17,14 @@ class _PopularMoviesViewState extends State<PopularMoviesView> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 5, childAspectRatio: 0.8),
+            crossAxisCount: Responsive().isMobile(context)
+                ? 2
+                : Responsive().isTablet(context)
+                    ? 3
+                    : 5,
+            childAspectRatio: 0.8),
         itemCount: widget.popularMovies.length,
         itemBuilder: (context, index) {
           final movie = widget.popularMovies[index];
@@ -41,7 +49,9 @@ class _PopularMoviesViewState extends State<PopularMoviesView> {
                     ..translate(0, -10))
                   : Matrix4.identity(),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  context.go('/movie/${movie.id}');
+                },
                 child: Container(
                   padding: EdgeInsets.all(10),
                   child: Card(

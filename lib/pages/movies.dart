@@ -78,23 +78,12 @@ class _MoviesPageState extends State<MoviesPage> {
                 callback: callback,
                 selectedFilterIdx: _selectedFilterIdx,
               ),
-              _isLoading
-                  ? LayoutBuilder(builder: (context, contraints) {
-                      double gridHeight = (contraints.maxWidth / 5) * 1.25 * 3;
-                      return SizedBox(
-                          height: gridHeight,
-                          child: const PopularMovieSkeleton());
-                    })
-                  : LayoutBuilder(builder: (context, contraints) {
-                      double gridHeight = (contraints.maxWidth / 5) *
-                          1.25 *
-                          (_popularMovies.length / 5);
-                      return SizedBox(
-                          height: gridHeight,
-                          child:
-                              PopularMoviesView(popularMovies: _currentmovies));
-                    }),
-                    Footer()
+              LayoutBuilder(builder: (context, contraints) {
+                return _isLoading
+                    ? const PopularMovieSkeleton()
+                    : PopularMoviesView(popularMovies: _currentmovies);
+              }),
+              Footer()
             ]),
           ),
         ));
