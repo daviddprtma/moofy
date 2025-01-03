@@ -73,6 +73,7 @@ class _PopularMoviesViewState extends State<PopularMoviesView> {
                         )),
                         Expanded(
                             child: ListView(
+                              shrinkWrap: true,
                           padding: EdgeInsets.all(8),
                           children: [
                             Text(

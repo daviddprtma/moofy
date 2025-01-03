@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moofy/models/movie.dart';
 import 'package:moofy/services/model_service.dart';
+import 'package:moofy/widgets/drawer.dart';
 import 'package:moofy/widgets/footer.dart';
+import 'package:moofy/widgets/navbar.dart';
 
 class SearchPage extends StatefulWidget {
   final String query;
@@ -33,7 +35,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Search Result for ${widget.query}"),
+        title: const CustomNavbar(),
       ),
       body: _isLoading
           ? Center(

@@ -126,7 +126,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                                                   height: 8,
                                                 ),
                                                 Text(
-                                                  movieDetail.overview,
+                                                  movieDetail.overview.toString(),
                                                   style: TextStyle(
                                                       fontSize: 20,
                                                       color: Colors.white),

@@ -6,6 +6,8 @@ class CustomNavbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _controller = TextEditingController();
+
     return AppBar(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -37,10 +39,13 @@ class CustomNavbar extends StatelessWidget implements PreferredSizeWidget {
                 onSubmitted: (value) {
                   context.go('/search/$value');
                 },
+                controller: _controller,
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.clear),
+                    prefixIcon: Icon(Icons.search),
                     suffixIcon: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _controller.clear();
+                      },
                       icon: Icon(Icons.cancel),
                     ),
                     hintText: "Search...",
