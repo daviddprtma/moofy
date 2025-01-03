@@ -66,29 +66,6 @@ class Footer extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          Wrap(
-            spacing: 16,
-            children: [
-              TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "About Us",
-                    style: TextStyle(color: Colors.grey[400]),
-                  )),
-                  TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Privacy Policy",
-                    style: TextStyle(color: Colors.grey[400]),
-                  )),
-                  TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Terms of Service",
-                    style: TextStyle(color: Colors.grey[400]),
-                  ))
-            ],
-          )
         ],
       ),
     );
